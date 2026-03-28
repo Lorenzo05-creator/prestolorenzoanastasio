@@ -6,19 +6,11 @@ use Illuminate\Support\Facades\Route;
 use App\Models\Article;
 
 
+
 Route::get('/', function () {
-    $articles = Article::latest()->take(6)->get();
+    $articles = Article::latest()->get();
     return view('welcome', compact('articles'));
 })->name('homepage');
-
-
-Route::get('/articles', [ArticleController::class, 'index'])->name('article.index');
-
-
-
-Route::get('/article/{article}', [ArticleController::class, 'show'])->name('article.show');
-
-Route::get('/category/{category}', [ArticleController::class, 'byCategory'])->name('article.byCategory');
 
 
 

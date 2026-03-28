@@ -12,30 +12,27 @@
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 
-        @foreach($articles as $article)
-            <div class="bg-gray-800 p-4 rounded shadow">
+       @forelse($articles as $article)
 
-                <h3 class="text-xl font-bold">
-                    {{ $article->title }}
-                </h3>
+    <div class="border p-4 rounded shadow mb-4">
 
-                <p class="text-gray-300 mt-2">
-                    {{ $article->description }}
-                </p>
+        <h3 class="text-xl font-bold">
+            {{ $article->title }}
+        </h3>
 
-                <p class="mt-2 text-blue-400 font-bold">
-                    {{ $article->price }} €
-                </p>
+        <p class="mt-2">
+            {{ $article->description }}
+        </p>
 
-                <a href="{{ route('article.show', $article) }}" 
-                   class="text-blue-400 mt-2 inline-block">
-                    Dettaglio
-                </a>
-
-            </div>
-        @endforeach
+        <p class="mt-2 font-bold">
+            {{ $article->price }} €
+        </p>
 
     </div>
+
+@empty
+    <p>Nessun annuncio</p>
+@endforelse
 
 </div>
 

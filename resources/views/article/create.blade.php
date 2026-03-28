@@ -1,41 +1,53 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Crea Annuncio</title>
-</head>
-<body>
+<x-app-layout>
 
-<h1>Inserisci Annuncio</h1>
+<div class="max-w-2xl mx-auto py-10">
 
-@if(session('success'))
-    <p style="color: green">{{ session('success') }}</p>
-@endif
+    <h1 class="text-2xl font-bold mb-6">
+        Inserisci un annuncio
+    </h1>
 
-<form method="POST" action="{{ route('article.store') }}">
-    @csrf
+    @if(session('success'))
+        <p class="text-green-500 mb-4">
+            {{ session('success') }}
+        </p>
+    @endif
 
-    <input type="text" name="title" placeholder="Titolo">
-    <br><br>
+    <form method="POST" action="{{ route('article.store') }}">
+        @csrf
 
-    <textarea name="description" placeholder="Descrizione"></textarea>
-    <br><br>
+        <div class="mb-4">
+    <input type="text" name="title" placeholder="Titolo"
+           class="w-full border p-2 rounded text-black">
+</div>
 
-    <input type="number" name="price" placeholder="Prezzo">
-    <br><br>
+<div class="mb-4">
+    <textarea name="description" placeholder="Descrizione"
+              class="w-full border p-2 rounded text-black"></textarea>
+</div>
 
-    <select name="category_id">
+<div class="mb-4">
+    <input type="number" name="price" placeholder="Prezzo"
+           class="w-full border p-2 rounded text-black">
+</div>
+
+<div class="mb-4">
+    <select name="category_id" class="w-full border p-2 rounded text-black">
         <option value="">Scegli categoria</option>
+
         @foreach($categories as $category)
             <option value="{{ $category->id }}">
                 {{ $category->name }}
             </option>
         @endforeach
     </select>
+</div>
 
-    <br><br>
+        <button class="bg-black text-white px-4 py-2 rounded">
+            Inserisci
+        </button>
 
-    <button type="submit">Crea</button>
-</form>
+    </form>
 
-</body>
-</html>
+</div>
+
+</x-app-layout>
