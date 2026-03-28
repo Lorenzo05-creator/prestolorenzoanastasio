@@ -15,6 +15,11 @@ class ArticleController extends Controller
         return view('article.index', compact('articles'));
     }
 
+    public function show(Article $article)
+    {
+        return view('article.show', compact('article'));
+    }
+
     public function create()
     {
         $categories = Category::all();
@@ -40,4 +45,9 @@ class ArticleController extends Controller
 
         return redirect()->route('article.index')->with('success', 'Annuncio creato!');
     }
+    public function byCategory(Category $category)
+{
+    $articles = $category->articles()->latest()->get();
+    return view('article.byCategory', compact('articles', 'category'));
+}
 }
