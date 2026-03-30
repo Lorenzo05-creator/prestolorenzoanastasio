@@ -1,6 +1,6 @@
 <x-app-layout>
 
-<div class="container mx-auto py-10">
+<div class="max-w-3xl mx-auto py-10">
 
     <h1 class="text-3xl font-bold">
         {{ $article->title }}
@@ -14,9 +14,11 @@
         {{ $article->price }} €
     </p>
 
-    <p class="mt-2">
-        Categoria: {{ $article->category->name }}
-    </p>
+    <div class="mt-6">
+        <a href="{{ route('article.index') }}" class="text-blue-500">
+            Torna agli annunci
+        </a>
+    </div>
 
 </div>
 

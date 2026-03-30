@@ -1,32 +1,45 @@
 <x-app-layout>
 
-<div class="container mx-auto py-10">
+<div class="max-w-5xl mx-auto py-10">
 
     <h1 class="text-3xl font-bold mb-6">
         Categoria: {{ $category->name }}
     </h1>
 
-    @forelse($articles as $article)
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 
-        <div class="border p-4 mb-4">
-            <h2 class="text-xl font-bold">
-                {{ $article->title }}
-            </h2>
+        @forelse($articles as $article)
 
-            <p>{{ $article->description }}</p>
+            <div class="border p-4 rounded shadow">
 
-            <p class="font-bold">
-                {{ $article->price }} €
-            </p>
+                <h2 class="text-xl font-bold">
+                    {{ $article->title }}
+                </h2>
 
-            <a href="{{ route('article.show', $article) }}" class="text-blue-500">
-                Vai al dettaglio
-            </a>
-        </div>
+                <p class="mt-2">
+                    {{ $article->description }}
+                </p>
 
-    @empty
-        <p>Nessun annuncio in questa categoria</p>
-    @endforelse
+                <p class="mt-2 font-bold">
+                    {{ $article->price }} €
+                </p>
+
+                <p class="mt-2 text-sm text-gray-500">
+                    Categoria: {{ $article->category->name }}
+                </p>
+
+                <a href="{{ route('article.show', $article) }}" 
+                   class="text-blue-500 mt-2 inline-block">
+                    Dettaglio
+                </a>
+
+            </div>
+
+        @empty
+            <p>Nessun annuncio in questa categoria</p>
+        @endforelse
+
+    </div>
 
 </div>
 
